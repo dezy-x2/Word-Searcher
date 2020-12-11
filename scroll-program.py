@@ -8,7 +8,7 @@ import datetime
 from english_words import english_words_lower_alpha_set
 
 wordList = english_words_lower_alpha_set
-
+#test
 newWordList = []
 
 #takes words out of wordlist that are bigger than 2 chars and makes it properly itteratable
