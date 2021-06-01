@@ -83,54 +83,41 @@ def createStatementFun(length, source):
 
 print("Finished selection at " + str(datetime.datetime.now()))
 
+def progressBar(i, given, word, reference, binaryResults):
+    if i == len(given) * 0.02 and word == reference[binaryResults][0]:
+        print("2% of the way there! ========================")
+        print("At " +str(datetime.datetime.now()))
+    elif input == len(given) * 0.05 and word == reference[binaryResults][0]:
+        print("5% of the way there! =================================")
+        print("At " +str(datetime.datetime.now()))
+    elif i == len(given) / 4 and word == reference[binaryResults][0]:
+        print("25% of the way there! ==========================================")
+        print("At " + str(datetime.datetime.now()))
+    elif i == len(given) / 2 and word == reference[binaryResults][0]:
+        print("50% of the way there! ===========================================================")
+        print("At " + str(datetime.datetime.now()))
+    elif i == len(given) * 0.75 and word == reference[binaryResults][0]:
+        print("75% of the way there! ==================================================================================")
+        print("At " + str(datetime.datetime.now()))
+
 def searchStatement(given, reference):
-    binaryCounter = 0
-    runningCounter = 0
-    firstIdx = 0
-    secondIdx = 0
     foundTotalUnique = 0
     foundTotal = 0
     foundWords = []
-    altRunner = 0
-    #what finds the words
-    while altRunner < len(given):
+    for i in range(len(given)):
         #calls binary search on the given letter
-        binaryResults = binarySearch(reference, given[binaryCounter])
+        binaryResults = binarySearch(reference, given[i])
         for word in reference[binaryResults]:
-            if given[firstIdx:len(word) + secondIdx] == word:
+            if given[i:len(word) + i] == word:
+                foundTotal += 1
                 if not word in foundWords:
                     #sifts through and decided if it is a new word or and old word and counts them as such
                     foundWords.append(word)
                     foundTotalUnique += 1
-                    foundTotal += 1
-                else:
-                    foundTotal += 1
-            runningCounter += 1
-            #check if we have looked at all possible words and and ups the indexes and zeros out the counter
-            if runningCounter == len(reference[binaryResults]):    
-                firstIdx += 1
-                secondIdx += 1
-                runningCounter = 0
+        
             #gives us the percentages that it is at (time consuming unfortunately)
-            # if altRunner == len(given) * 0.02 and word == reference[binaryResults][0]:
-            #     print("2% of the way there! ========================")
-            #     print("At " +str(datetime.datetime.now()))
-            # if altRunner == len(given) * 0.05 and word == reference[binaryResults][0]:
-            #     print("5% of the way there! =================================")
-            #     print("At " +str(datetime.datetime.now()))
-            # if altRunner == len(given) / 4 and word == reference[binaryResults][0]:
-            #     print("25% of the way there! ==========================================")
-            #     print("At " + str(datetime.datetime.now()))
-            # if altRunner == len(given) / 2 and word == reference[binaryResults][0]:
-            #     print("50% of the way there! ===========================================================")
-            #     print("At " + str(datetime.datetime.now()))
-            # if altRunner == len(given) * 0.75 and word == reference[binaryResults][0]:
-            #     print("75% of the way there! ==================================================================================")
-            #     print("At " + str(datetime.datetime.now()))
-        #altRunner ensures that we don't create and infinite loop while also looking at ever possible letter
-        altRunner += 1
-        #ticks up the letter that is searched for in the binary search after each letter is fully looked at
-        binaryCounter += 1
+            # progressBar(i, given, word, reference, binaryResults)
+
     return foundTotal, foundTotalUnique, foundWords
 
 totalFound, totalUniqueFound, wordsFound = searchStatement(createStatementOfficial(1000, alphabet), orgAlph)
