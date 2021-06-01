@@ -7,6 +7,8 @@ import datetime
 #list of words
 from english_words import english_words_lower_alpha_set
 
+from tqdm import *
+
 wordList = english_words_lower_alpha_set
 #test
 newWordList = []
@@ -58,18 +60,18 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
 
 aphWNums = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
-print(f"Started at approximatley {datetime.datetime.now()}")
+
 
 #makes the statement that it searches for words in 
 
 def createStatementOfficial(length, source):
+    print(f"Started at approximatley {datetime.datetime.now()}")
     final = ""
-    for _ in range(length):
+    for _ in tqdm(range(length),desc="generating statement"):
         rand = random.randint(0,len(source) - 1)
         letter = source[rand]
         final += letter
-        # time.sleep(0.01)
-        # print(final)
+    print(f"Finished selection at {datetime.datetime.now()}")
     return final
 
 def createStatementFun(length, source):
@@ -81,50 +83,57 @@ def createStatementFun(length, source):
         time.sleep(0.01)
         print(final)
 
-print(f"Finished selection at {datetime.datetime.now()}")
-
-def progressBar(i, given, word, reference, binaryResults):
-    if i == len(given) * 0.02 and word == reference[binaryResults][0]:
-        print("2% of the way there! ========================")
-        print(f"At {datetime.datetime.now()}")
-    elif input == len(given) * 0.05 and word == reference[binaryResults][0]:
-        print("5% of the way there! =================================")
-        print(f"At {datetime.datetime.now()}")
-    elif i == len(given) / 4 and word == reference[binaryResults][0]:
-        print("25% of the way there! ==========================================")
-        print(f"At {datetime.datetime.now()}")
-    elif i == len(given) / 2 and word == reference[binaryResults][0]:
-        print("50% of the way there! ===========================================================")
-        print(f"At {datetime.datetime.now()}")
-    elif i == len(given) * 0.75 and word == reference[binaryResults][0]:
-        print("75% of the way there! ==================================================================================")
-        print(f"At {datetime.datetime.now()}")
+orgDict = {
+    "a": 0,
+    "b": 1,
+    "c": 2,
+    "d": 3,
+    "e": 4,
+    "f": 5,
+    "g": 6,
+    "h": 7,
+    "i": 8,
+    "j": 9,
+    "k": 10,
+    "l": 11,
+    "m": 12,
+    "n": 13,
+    "o": 14,
+    "p": 15,
+    "q": 16,
+    "r": 17,
+    "s": 18,
+    "t": 19,
+    "u": 20,
+    "v": 21,
+    "w": 22,
+    "x": 23,
+    "y": 24,
+    "z": 25
+}
 
 def searchStatement(given, reference):
     foundTotalUnique = 0
     foundTotal = 0
     foundWords = []
-    for i in range(len(given)):
+    for i in tqdm(range(len(given)), desc="searching statement"):
         #calls binary search on the given letter
-        binaryResults = binarySearch(reference, given[i])
+        binaryResults = orgDict[given[i]]   #binarySearch(reference, given[i])
         for word in reference[binaryResults]:
             if given[i:len(word) + i] == word:
-                foundTotal += 1
-                if not word in foundWords:
-                    #sifts through and decided if it is a new word or and old word and counts them as such
-                    foundWords.append(word)
-                    foundTotalUnique += 1
-        
-            #gives us the percentages that it is at (time consuming unfortunately)
-            # progressBar(i, given, word, reference, binaryResults)
+                foundWords.append(word)
+
+    foundTotal = len(foundWords)
+    foundWords = list(set(foundWords))
+    foundTotalUnique = len(foundWords)
 
     return foundTotal, foundTotalUnique, foundWords
 
-totalFound, totalUniqueFound, wordsFound = searchStatement(createStatementOfficial(1000, alphabet), orgAlph)
+totalFound, totalUniqueFound, wordsFound = searchStatement(createStatementOfficial(1000000, alphabet), orgAlph)
 
 print(f"The total amount of found words is: {totalFound}")
 print(f"The total amount of unique words is: {totalUniqueFound}")
-print(f"I was able to find {wordsFound}") 
+# print(f"I was able to find {wordsFound}") 
 print(f"Finished up at {datetime.datetime.now()}")
 
 # createStatementFun(1000, alphabet)
