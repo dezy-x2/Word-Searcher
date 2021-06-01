@@ -58,7 +58,7 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
 
 aphWNums = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
-print("Started at approximatley " + str(datetime.datetime.now()))
+print(f"Started at approximatley {datetime.datetime.now()}")
 
 #makes the statement that it searches for words in 
 
@@ -81,24 +81,24 @@ def createStatementFun(length, source):
         time.sleep(0.01)
         print(final)
 
-print("Finished selection at " + str(datetime.datetime.now()))
+print(f"Finished selection at {datetime.datetime.now()}")
 
 def progressBar(i, given, word, reference, binaryResults):
     if i == len(given) * 0.02 and word == reference[binaryResults][0]:
         print("2% of the way there! ========================")
-        print("At " +str(datetime.datetime.now()))
+        print(f"At {datetime.datetime.now()}")
     elif input == len(given) * 0.05 and word == reference[binaryResults][0]:
         print("5% of the way there! =================================")
-        print("At " +str(datetime.datetime.now()))
+        print(f"At {datetime.datetime.now()}")
     elif i == len(given) / 4 and word == reference[binaryResults][0]:
         print("25% of the way there! ==========================================")
-        print("At " + str(datetime.datetime.now()))
+        print(f"At {datetime.datetime.now()}")
     elif i == len(given) / 2 and word == reference[binaryResults][0]:
         print("50% of the way there! ===========================================================")
-        print("At " + str(datetime.datetime.now()))
+        print(f"At {datetime.datetime.now()}")
     elif i == len(given) * 0.75 and word == reference[binaryResults][0]:
         print("75% of the way there! ==================================================================================")
-        print("At " + str(datetime.datetime.now()))
+        print(f"At {datetime.datetime.now()}")
 
 def searchStatement(given, reference):
     foundTotalUnique = 0
@@ -122,9 +122,9 @@ def searchStatement(given, reference):
 
 totalFound, totalUniqueFound, wordsFound = searchStatement(createStatementOfficial(1000, alphabet), orgAlph)
 
-print("The total amount of found words is: " +str(totalFound))
-print("The total amount of unique words is: " +str(totalUniqueFound))
-print("I was able to find " +str(wordsFound)) 
-print("Finished up at " + str(datetime.datetime.now()))
+print(f"The total amount of found words is: {totalFound}")
+print(f"The total amount of unique words is: {totalUniqueFound}")
+print(f"I was able to find {wordsFound}") 
+print(f"Finished up at {datetime.datetime.now()}")
 
 # createStatementFun(1000, alphabet)
