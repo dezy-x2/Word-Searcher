@@ -97,6 +97,15 @@ def createStatementFun(length, source):
         time.sleep(0.01)
         print(final)
 
+def createStatementCool(length, source):
+    for _ in range(length):
+        print("hi")
+        rand = random.randint(0, len(source) -1)
+        char = source[rand]
+        print(char, end="")
+        time.sleep(0.5)
+    print("")
+
 orgDict = {
     "a": 0,
     "b": 1,
@@ -154,7 +163,7 @@ def searchStatement(given, reference):
 
     return foundTotal, foundTotalUnique, foundWords, stateAnalytics, frequency
 
-totalFound, totalUniqueFound, wordsFound, analytics, frqAnalytics = searchStatement(createStatementOfficial(1000, alphabet), orgAlph)
+# totalFound, totalUniqueFound, wordsFound, analytics, frqAnalytics = searchStatement(createStatementOfficial(1000, alphabet), orgAlph)
 
 
 def itpsAnalysis():
@@ -228,3 +237,5 @@ def justAToE():
 # justAToE()
 
 # createStatementFun(1000, alphabet)
+
+createStatementCool(10, alphabet)
