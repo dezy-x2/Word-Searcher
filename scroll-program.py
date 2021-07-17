@@ -60,9 +60,18 @@ def binarySearch(arr, target):
 #         idx = word
 # print(minLen, idx)
 
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',\
+     'x', 'y', 'z']
 
-aphWNums = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+aphWNums = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',\
+     'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+
+alphabetWithNewline = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', \
+    'v', 'w', 'x', 'y', 'z', '\n', '\n']
+
+alphanum = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', \
+    'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\n', '\n', '[', ']', '{', '}' '\\', '|', ':', ';', \
+        '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '=', '<', '>', '?', '~', '`', '\'', '\"', ' ',]
 
 def statementAnalytics(statement):
     sortedStatement = [[None] for _ in range(26)]
@@ -99,11 +108,11 @@ def createStatementFun(length, source):
 
 def createStatementCool(length, source):
     for _ in range(length):
-        print("hi")
+        # print("---", end="", flush=True)
         rand = random.randint(0, len(source) -1)
         char = source[rand]
-        print(char, end="")
-        time.sleep(0.5)
+        print(char, end="", flush=True)
+        time.sleep(0.05)
     print("")
 
 orgDict = {
@@ -238,4 +247,4 @@ def justAToE():
 
 # createStatementFun(1000, alphabet)
 
-createStatementCool(10, alphabet)
+createStatementCool(10000, alphanum)
